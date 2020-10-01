@@ -1,6 +1,6 @@
 import argparse
 import csv
-import os
+import os, sys
 
 
 if __name__ == '__main__':
@@ -9,7 +9,8 @@ if __name__ == '__main__':
     parser.add_argument('-e', type=str)
     args = parser.parse_args()
     print(args)
-    csv_file = csv.reader(open('default_database.csv', 'r', encoding='UTF8'))
+    path = r'C:\...\cmd_bing\dist\\'        # Add your PATH dir here
+    csv_file = csv.reader(open(path+'default_database.csv', 'r', encoding='UTF8'))
     data_item = [row for row in csv_file]
     for data in data_item:
         engine = data[0]

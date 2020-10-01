@@ -5,3 +5,4 @@ tieba,http://tieba.baidu.com/f?kw={}
 baidu,https://www.baidu.com/s?wd={}
 jd,https://search.jd.com/Search?keyword={}
 taobao,https://s.taobao.com/search?q={}
+bilibili,https://search.bilibili.com/all?keyword={}
