@@ -1,4 +1,5 @@
 import argparse
+import csv
 import os
 
 
@@ -8,17 +9,17 @@ if __name__ == '__main__':
     parser.add_argument('-e', type=str)
     args = parser.parse_args()
     print(args)
-    if args.e == 'trans':
-        url = r'http://dict.youdao.com/w/eng/{}'.format(args.keyword)
-    elif args.e == 'tieba':
-        url = r'http://tieba.baidu.com/f?kw={}'.format(args.keyword)
-    elif args.e == 'baidu':
-        url = r'https://www.baidu.com/s?wd={}'.format(args.keyword)
-    elif args.e == 'jd':
-        url = r'https://search.jd.com/Search?keyword={}'.format(args.keyword)
-    elif args.e == 'taobao':
-        url = r'https://s.taobao.com/search?q={}'.format(args.keyword)
+    csv_file = csv.reader(open('default_database.csv', 'r', encoding='UTF8'))
+    data_item = [row for row in csv_file]
+    for data in data_item:
+        engine = data[0]
+        url_link = data[1]
+        print(engine, url_link)
+        if engine == args.e:
+            url = url_link.format(args.keyword)
+            os.system(r'start "C:\Program Files\Google\Chrome\Application\chrome.exe" {}'.format(url))
+            break
     else:
-        url = r'https://cn.bing.com/search?q={}'.format(args.keyword)
-    # print(url)
+        url = data_item[1][1].format(args.keyword)
+    print(url)
     os.system(r'start "C:\Program Files\Google\Chrome\Application\chrome.exe" {}'.format(url))
